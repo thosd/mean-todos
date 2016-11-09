@@ -68,5 +68,16 @@ router.delete('/todos/:id', function(req, res){
     });
   });
 });
-
+router.get('/todos/description/:desc', function(req, res){
+  Todo.find({description: req.params.desc }, function(err, todos){
+    if(err){
+      res.status(500).json({
+        err: err
+      });
+    }
+    res.status(200).json({
+      todos:todos
+    });
+  });
+});
 module.exports = router;
